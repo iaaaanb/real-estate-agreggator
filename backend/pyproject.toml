@@ -1,0 +1,53 @@
+[project]
+name = "propiedades-backend"
+version = "0.1.0"
+description = "Agregador inmobiliario Chile"
+requires-python = ">=3.12"
+dependencies = [
+    # API
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.34",
+    "pydantic>=2.10",
+    "pydantic-settings>=2.7",
+
+    # Base de datos
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg>=0.30",
+    "geoalchemy2>=0.17",
+    "alembic>=1.14",
+
+    # Redis
+    "redis>=5.2",
+
+    # HTTP client (para ML API)
+    "httpx>=0.28",
+
+    # Task queue
+    "celery[redis]>=5.4",
+
+    # Utilidades
+    "python-dotenv>=1.0",
+    "orjson>=3.10",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.25",
+    "ruff>=0.8",
+    "ipython>=8.30",
+]
+scraping = [
+    "scrapy>=2.12",
+    "playwright>=1.49",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
